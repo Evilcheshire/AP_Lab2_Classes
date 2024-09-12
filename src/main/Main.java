@@ -166,17 +166,16 @@ public class Main {
      * @param name The first name to search for
      */
     public static void printCustomersByName(Customer[] customers, String name) {
-        System.out.println(" Customers with the specified name:");
         boolean found = false;
+        System.out.println(" Customers with the specified name:");
         for (Customer customer : customers) {
             if (customer != null && customer.getFname().equalsIgnoreCase(name)) {
                 System.out.println(customer);
                 found = true;
             }
         }
-        if (!found) {
+        if (!found)
             System.out.println("\tNo customers found with the given name (" + name + ").");
-        }
     }
 
     /**
@@ -187,8 +186,9 @@ public class Main {
      * @param end The ending credit card number (inclusive)
      */
     public static void printCustomersByCardRange(Customer[] customers, String start, String end) {
-        BigInteger startCard = new BigInteger(start);
-        BigInteger endCard = new BigInteger(end);
+        BigInteger startCard = new BigInteger(start),
+                   endCard = new BigInteger(end);
+        boolean found = false;
 
         if (startCard.compareTo(endCard) > 0) {
             System.out.println(" Invalid range: Start card number must be less than or equal to end card number.");
@@ -196,7 +196,7 @@ public class Main {
         }
 
         System.out.println(" Customers with card numbers in the range " + start + " - " + end + ":");
-        boolean found = false;
+
         for (Customer customer : customers) {
             if (customer != null) {
                 BigInteger customerCard = new BigInteger(customer.getCreditCard());
@@ -206,9 +206,8 @@ public class Main {
                 }
             }
         }
-        if (!found) {
+        if (!found)
             System.out.println("\tNo customers found with card numbers in the specified range.");
-        }
     }
 
     /**
@@ -225,8 +224,7 @@ public class Main {
                 found = true;
             }
         }
-        if (!found) {
+        if (!found)
             System.out.println("\tNo customers with debt!");
-        }
     }
 }

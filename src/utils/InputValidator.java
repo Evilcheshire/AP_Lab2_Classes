@@ -63,11 +63,10 @@ public class InputValidator {
         String cardNumber;
         while (true) {
             cardNumber = sc.nextLine();
-            if (cardNumber.matches("\\d{16}")) {
+            if (cardNumber.matches("\\d{16}"))
                 return cardNumber;
-            } else {
+             else
                 System.out.print("Invalid input. Please enter a valid 16-digit card number.\n\t\t -> ");
-            }
         }
     }
 }
