@@ -1,6 +1,7 @@
 package main;
 
 import java.math.BigInteger;
+import java.util.ArrayList;
 import java.util.Scanner;
 import customer.Customer;
 import utils.InputValidator;
@@ -23,7 +24,7 @@ public class Main {
      */
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        Customer[] customers = new Customer[10];
+        ArrayList<Customer> customers = new ArrayList<Customer>();
         boolean exit = false;
 
         while (!exit) {
@@ -33,7 +34,7 @@ public class Main {
 
             switch (choice) {
                 case 1:
-                    customers = enterCustomers(sc);
+                    enterCustomers(customers, sc);
                     break;
                 case 2:
                     SearchByName(customers, sc);
@@ -56,16 +57,6 @@ public class Main {
     }
 
     /**
-     * Checks if the list of customers is empty
-     *
-     * @param customers Array of customers
-     * @return true if the array is empty or contains null values, false otherwise
-     */
-    private static boolean isCustomerListEmpty(Customer[] customers) {
-        return customers == null || customers.length == 0 || customers[0] == null;
-    }
-
-    /**
      * Displays the main menu to the user
      */
     public static void displayMenu() {
@@ -81,16 +72,13 @@ public class Main {
      * Allows the user to enter information about multiple customers
      *
      * @param sc Scanner object for user input
-     * @return An array of customers entered by the user
      */
-    public static Customer[] enterCustomers(Scanner sc) {
+    public static void enterCustomers(ArrayList<Customer> customers,Scanner sc) {
         System.out.print(" How many customers do you want to enter?\n\t\t -> ");
         int n = InputValidator.getValidInt(sc);
 
-        Customer[] customers = new Customer[n];
-
         for (int i = 0; i < n; i++) {
-            System.out.println("Enter details for customer №" + (i + 1));
+            System.out.println("Enter details for customer №" + (customers.size() + i + 1));
             System.out.print("\t\tID -> ");
             int id = InputValidator.getValidInt(sc);
             System.out.print("\t\tLast Name -> ");
@@ -106,10 +94,8 @@ public class Main {
             System.out.print("\t\tBalance -> ");
             double balance = InputValidator.getValidDouble(sc);
 
-            customers[i] = new Customer(id, lname, fname, mname, address, creditCard, balance);
+            customers.add(new Customer(id, lname, fname, mname, address, creditCard, balance));
         }
-
-        return customers;
     }
 
     /**
@@ -118,8 +104,8 @@ public class Main {
      * @param customers Array of customers
      * @param sc Scanner object for user input
      */
-    private static void SearchByName(Customer[] customers, Scanner sc) {
-        if (isCustomerListEmpty(customers)) {
+    private static void SearchByName(ArrayList<Customer> customers, Scanner sc) {
+        if (customers.isEmpty()) {
             System.out.println(" You have to enter data about customers first.");
             return;
         }
@@ -134,8 +120,8 @@ public class Main {
      * @param customers Array of customers
      * @param sc Scanner object for user input
      */
-    private static void SearchByCardRange(Customer[] customers, Scanner sc) {
-        if (isCustomerListEmpty(customers)) {
+    private static void SearchByCardRange(ArrayList<Customer> customers, Scanner sc) {
+        if (customers.isEmpty()) {
             System.out.println(" You have to enter data about customers first.");
             return;
         }
@@ -151,8 +137,8 @@ public class Main {
      *
      * @param customers Array of customers
      */
-    private static void SearchByDebt(Customer[] customers) {
-        if (isCustomerListEmpty(customers)) {
+    private static void SearchByDebt(ArrayList<Customer> customers) {
+        if (customers.isEmpty()) {
             System.out.println(" You have to enter data about customers first.");
             return;
         }
@@ -165,7 +151,7 @@ public class Main {
      * @param customers Array of customers
      * @param name The first name to search for
      */
-    public static void printCustomersByName(Customer[] customers, String name) {
+    public static void printCustomersByName(ArrayList<Customer> customers, String name) {
         boolean found = false;
         System.out.println(" Customers with the specified name:");
         for (Customer customer : customers) {
@@ -185,7 +171,7 @@ public class Main {
      * @param start The starting credit card number (inclusive)
      * @param end The ending credit card number (inclusive)
      */
-    public static void printCustomersByCardRange(Customer[] customers, String start, String end) {
+    public static void printCustomersByCardRange(ArrayList<Customer> customers, String start, String end) {
         BigInteger startCard = new BigInteger(start),
                    endCard = new BigInteger(end);
         boolean found = false;
@@ -215,7 +201,7 @@ public class Main {
      *
      * @param customers Array of customers
      */
-    public static void printCustomersByDebt(Customer[] customers) {
+    public static void printCustomersByDebt(ArrayList<Customer> customers) {
         System.out.println(" Customers with debt:");
         boolean found = false;
         for (Customer customer : customers) {
