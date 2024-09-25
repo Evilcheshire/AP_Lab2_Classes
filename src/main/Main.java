@@ -6,7 +6,7 @@ import java.util.Scanner;
 import customer.Customer;
 import utils.InputValidator;
 
-/**
+/*
  * Main class of the program, allows the user to search for a specific customer or customers based on such parameters:
  *  - customer's first name
  *  - range of customer's credit card number
@@ -17,10 +17,8 @@ import utils.InputValidator;
  */
 public class Main {
 
-    /**
+    /*
      * Entry point of the program. It provides a menu to interact with customer data
-     *
-     * @param args Command-line arguments (not used)
      */
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
@@ -56,9 +54,7 @@ public class Main {
         }
     }
 
-    /**
-     * Displays the main menu to the user
-     */
+
     public static void displayMenu() {
         System.out.println("\n\t\t\tMenu" +
                 "\n\t-> 1. Enter customer information" +
@@ -68,10 +64,8 @@ public class Main {
                 "\n\t-> 0. Exit");
     }
 
-    /**
+    /*
      * Allows the user to enter information about multiple customers
-     *
-     * @param sc Scanner object for user input
      */
     public static void enterCustomers(ArrayList<Customer> customers,Scanner sc) {
         System.out.print(" How many customers do you want to enter?\n\t\t -> ");
@@ -98,11 +92,8 @@ public class Main {
         }
     }
 
-    /**
+    /*
      * Searches for customers by their first name
-     *
-     * @param customers Array of customers
-     * @param sc Scanner object for user input
      */
     private static void SearchByName(ArrayList<Customer> customers, Scanner sc) {
         if (customers.isEmpty()) {
@@ -114,11 +105,8 @@ public class Main {
         printCustomersByName(customers, name);
     }
 
-    /**
+    /*
      * Searches for customers by their credit card number range
-     *
-     * @param customers Array of customers
-     * @param sc Scanner object for user input
      */
     private static void SearchByCardRange(ArrayList<Customer> customers, Scanner sc) {
         if (customers.isEmpty()) {
@@ -132,10 +120,8 @@ public class Main {
         printCustomersByCardRange(customers, start, end);
     }
 
-    /**
+    /*
      * Searches for customers who have debt (negative balance)
-     *
-     * @param customers Array of customers
      */
     private static void SearchByDebt(ArrayList<Customer> customers) {
         if (customers.isEmpty()) {
@@ -145,11 +131,8 @@ public class Main {
         printCustomersByDebt(customers);
     }
 
-    /**
+    /*
      * Prints customers that match the specified first name
-     *
-     * @param customers Array of customers
-     * @param name The first name to search for
      */
     public static void printCustomersByName(ArrayList<Customer> customers, String name) {
         boolean found = false;
@@ -164,12 +147,8 @@ public class Main {
             System.out.println("\tNo customers found with the given name (" + name + ").");
     }
 
-    /**
+    /*
      * Prints customers whose credit card numbers fall within the specified range
-     *
-     * @param customers Array of customers
-     * @param start The starting credit card number (inclusive)
-     * @param end The ending credit card number (inclusive)
      */
     public static void printCustomersByCardRange(ArrayList<Customer> customers, String start, String end) {
         BigInteger startCard = new BigInteger(start),
@@ -196,10 +175,8 @@ public class Main {
             System.out.println("\tNo customers found with card numbers in the specified range.");
     }
 
-    /**
+    /*
      * Prints customers who have a negative balance (debt)
-     *
-     * @param customers Array of customers
      */
     public static void printCustomersByDebt(ArrayList<Customer> customers) {
         System.out.println(" Customers with debt:");
