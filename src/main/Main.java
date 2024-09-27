@@ -23,6 +23,11 @@ public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         ArrayList<Customer> customers = new ArrayList<Customer>();
+        customers.add(new Customer(1, "Smith", "John", "-", "123 Elm Street", "1234567812345678", 1200.50));
+        customers.add(new Customer(2, "Doe", "Joe", "-", "123 Elm Street", "0000000000000000", -1200.50));
+        customers.add(new Customer(3, "Lee", "Maria", "Louise", "123 Elm Street", "1111111111111111", 1000));
+        customers.add(new Customer(4, "Williams", "Maria", "-", "123 Elm Street", "2222222222222222", -999.99));
+        customers.add(new Customer(5, "Blackwood", "Emily", "Rae", "123 Elm Street", "9999909999999999", -8000));
         boolean exit = false;
 
         while (!exit) {
@@ -72,7 +77,7 @@ public class Main {
         int n = InputValidator.getValidInt(sc);
 
         for (int i = 0; i < n; i++) {
-            System.out.println("Enter details for customer №" + (customers.size() + i + 1));
+            System.out.println("Enter details for customer №" + ((customers.size() + 1)));
             System.out.print("\t\tID -> ");
             int id = InputValidator.getValidInt(sc);
             System.out.print("\t\tLast Name -> ");
@@ -180,14 +185,15 @@ public class Main {
      */
     public static void printCustomersByDebt(ArrayList<Customer> customers) {
         System.out.println(" Customers with debt:");
-        boolean found = false;
+        int k = 0;
         for (Customer customer : customers) {
             if (customer != null && customer.getBalance() < 0) {
+                k++;
                 System.out.println(customer);
-                found = true;
             }
         }
-        if (!found)
+        if (k == 0)
             System.out.println("\tNo customers with debt!");
+        else System.out.println(" Number of customers with debt: " + k);
     }
 }

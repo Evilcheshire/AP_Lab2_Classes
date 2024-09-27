@@ -3,7 +3,7 @@ package utils;
 import java.util.Scanner;
 import java.util.InputMismatchException;
 
-/**
+/*
  * Utility class for validating and retrieving user input from a {@link Scanner}.
  * It provides methods for obtaining valid integer, double, and credit card number inputs
  */

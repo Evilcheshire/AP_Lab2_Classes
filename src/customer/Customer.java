@@ -1,6 +1,6 @@
 package customer;
 
-/**
+/*
  * Represents a customer with personal and financial details.
  * Provides methods to get and set customer attributes
  */
